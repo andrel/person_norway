@@ -61,7 +61,6 @@ public class Fodselsnummer {
     private String getBirthCentury() {
         int individSiffer = Integer.parseInt(getIndividSiffer());
         int birthYear = Integer.parseInt(getBirthYear2Digit());
-        System.out.println("individSiffer: " + individSiffer + ", birthYear: " + birthYear);
         if (individSiffer > 0 && individSiffer <= 499 && birthYear >= 0 && birthYear < 99) {
             // 000–499 omfatter personer født i perioden 1900–1999.
             return "19";
