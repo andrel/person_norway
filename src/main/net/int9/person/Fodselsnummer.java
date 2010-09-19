@@ -1,5 +1,13 @@
 package net.int9.person;
 
+/**
+ * Represent fodslenummer and provide methods to query fodselsnummer characteristics. 
+ * 
+ * Ref: http://www.lovdata.no/cgi-wift/wiftldles?doc=/usr/www/lovdata/for/sf/fd/td-20071109-1268-002.html#2-2
+ * 
+ * @author andre
+ *
+ */
 public class Fodselsnummer {
 
     private String stringRepresentation;
@@ -53,13 +61,18 @@ public class Fodselsnummer {
     private String getBirthCentury() {
         int individSiffer = Integer.parseInt(getIndividSiffer());
         int birthYear = Integer.parseInt(getBirthYear2Digit());
-        if (individSiffer <= 499) {
+        System.out.println("individSiffer: " + individSiffer + ", birthYear: " + birthYear);
+        if (individSiffer > 0 && individSiffer <= 499 && birthYear >= 0 && birthYear < 99) {
+            // 000–499 omfatter personer født i perioden 1900–1999.
             return "19";
-        } else if (individSiffer >= 500 && birthYear < 40) {
+        } else if (individSiffer >= 500 && individSiffer <= 999 && birthYear >= 0 && birthYear < 40) {
+            // 500–999 omfatter personer født i perioden 2000–2039.
             return "20";
-        } else if (individSiffer >= 500 && individSiffer <= 749 && birthYear > 54) {
+        } else if (individSiffer >= 500 && individSiffer <= 749 && birthYear >= 54 && birthYear <= 99) {
+            // 500–749 omfatter personer født i perioden 1854–1899.
             return "18";
-        } else if (individSiffer >= 900 && birthYear >= 40) {
+        } else if (individSiffer >= 900 && individSiffer <= 999 && birthYear >= 40 && birthYear <= 99) {
+            // 900–999 omfatter personer født i perioden 1940–1999
             return "19";
         } else {
             throw new IllegalStateException("Unexpected case validating fodselsnummer " + stringRepresentation);

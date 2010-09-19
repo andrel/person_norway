@@ -16,7 +16,7 @@ public class FodselsnummerTest {
         cases.add(new FodselsnummerTestCase("01088049701").setMale().isBornInYear("1980").isBornMonth("08").isBornDay("01"));
         cases.add(new FodselsnummerTestCase("01088049620").setFemale().isBornInYear("1980").isBornMonth("08").isBornDay("01"));
         cases.add(new FodselsnummerTestCase("31120894539").setMale().isBornInYear("2008").isBornMonth("12").isBornDay("31"));
-        cases.add(new FodselsnummerTestCase("01129497048").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01"));
+        cases.add(new FodselsnummerTestCase("01129462406").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01"));
         cases.add(new FodselsnummerTestCase("abc").setIsInvalid());
         return cases;
     }
@@ -24,6 +24,7 @@ public class FodselsnummerTest {
     @Test
     public void runTestCases() throws Exception {
         for (FodselsnummerTestCase testCase : testCases) {
+            int testCaseNumber = testCases.indexOf(testCase);
             if (testCase.isInvalid()) {
                 try {
                     Fodselsnummer.valueOf(testCase.getFodselsNummer());
@@ -33,12 +34,13 @@ public class FodselsnummerTest {
                 }
             } else {
                 Fodselsnummer fNr = Fodselsnummer.valueOf(testCase.getFodselsNummer());
-                assertEquals(testCase.isMale(), fNr.isMale());
-                assertEquals(testCase.getFodselsNummer(), fNr.toString());
-                assertEquals(testCase.getYyyy(), fNr.getBirthYear4Digit());
-                assertEquals(testCase.getYy(), fNr.getBirthYear2Digit());
-                assertEquals(testCase.getMm(), fNr.getMonth());
-                assertEquals(testCase.getDd(), fNr.getDay());
+                String errorString = "Failed[" + testCaseNumber + "]";
+                assertEquals(errorString, testCase.isMale(), fNr.isMale());
+                assertEquals(errorString, testCase.getFodselsNummer(), fNr.toString());
+                assertEquals(errorString, testCase.getYyyy(), fNr.getBirthYear4Digit());
+                assertEquals(errorString, testCase.getYy(), fNr.getBirthYear2Digit());
+                assertEquals(errorString, testCase.getMm(), fNr.getMonth());
+                assertEquals(errorString, testCase.getDd(), fNr.getDay());
             }
         }
     }
