@@ -1,11 +1,12 @@
 package net.int9.person;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import net.int9.person.Fodselsnummer;
-
+import org.junit.Before;
 import org.junit.Test;
 
 public class FodselsnummerTest {
@@ -17,6 +18,7 @@ public class FodselsnummerTest {
         cases.add(new FodselsnummerTestCase("01088049620").setFemale().isBornInYear("1980").isBornMonth("08").isBornDay("01"));
         cases.add(new FodselsnummerTestCase("31120894539").setMale().isBornInYear("2008").isBornMonth("12").isBornDay("31"));
         cases.add(new FodselsnummerTestCase("01129462406").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01"));
+        cases.add(new FodselsnummerTestCase("01129462407").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01").setIsInvalid());
         cases.add(new FodselsnummerTestCase("abc").setIsInvalid());
         return cases;
     }
@@ -28,21 +30,27 @@ public class FodselsnummerTest {
             if (testCase.isInvalid()) {
                 try {
                     Fodselsnummer.valueOf(testCase.getFodselsNummer());
-                    fail("Expected exception on invalid fodselsNummer");
+                    fail(failMsg(testCaseNumber));
                 } catch (IllegalArgumentException e) {
                     ;
                 }
             } else {
                 Fodselsnummer fNr = Fodselsnummer.valueOf(testCase.getFodselsNummer());
-                String errorString = "Failed[" + testCaseNumber + "]";
-                assertEquals(errorString, testCase.isMale(), fNr.isMale());
-                assertEquals(errorString, testCase.getFodselsNummer(), fNr.toString());
-                assertEquals(errorString, testCase.getYyyy(), fNr.getBirthYear4Digit());
-                assertEquals(errorString, testCase.getYy(), fNr.getBirthYear2Digit());
-                assertEquals(errorString, testCase.getMm(), fNr.getMonth());
-                assertEquals(errorString, testCase.getDd(), fNr.getDay());
+                assertEquals(failMsg(testCaseNumber), testCase.isMale(), fNr.isMale());
+                assertEquals(failMsg(testCaseNumber), testCase.getFodselsNummer(), fNr.toString());
+                assertEquals(failMsg(testCaseNumber), testCase.getYyyy(), fNr.getBirthYear4Digit());
+                assertEquals(failMsg(testCaseNumber), testCase.getYy(), fNr.getBirthYear2Digit());
+                assertEquals(failMsg(testCaseNumber), testCase.getMm(), fNr.getMonth());
+                assertEquals(failMsg(testCaseNumber), testCase.getDd(), fNr.getDay());
             }
         }
     }
 
+	private String failMsg(int testCaseNumber) {
+		return String.format("Failed[%d]", testCaseNumber);
+	}
+
+	@Before
+	public void setUp() {
+	}
 }
