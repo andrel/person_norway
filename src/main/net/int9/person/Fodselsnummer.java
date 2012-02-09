@@ -1,16 +1,16 @@
 package net.int9.person;
 
 /**
- * Represent fodslenummer and provide methods to query fodselsnummer characteristics. 
- * 
- * Ref: http://www.lovdata.no/cgi-wift/wiftldles?doc=/usr/www/lovdata/for/sf/fd/td-20071109-1268-002.html#2-2
- * 
- * @author andre
+ * Represent fodslenummer and provide methods to query fodselsnummer characteristics.
+ * <p>
+ *     Ref: http://www.lovdata.no/cgi-wift/wiftldles?doc=/usr/www/lovdata/for/sf/fd/td-20071109-1268-002.html#2-2
+ * </p>
  *
+ * @author andre
  */
-public class Fodselsnummer {
+public final class Fodselsnummer {
 
-    private String stringRepresentation;
+    private final String stringRepresentation;
 
     private Fodselsnummer(String number) {
         if (!Validator.isValid(number)) {
@@ -19,14 +19,24 @@ public class Fodselsnummer {
         this.stringRepresentation = number;
     }
 
+    /**
+     * Construct a Fodselsnummer object based on a string-representation.
+     * <p>
+     *     You will get an exception on an invalid string representation. Use {@link #isValid(String)} to test for a
+     *     valid fodselsnummer.
+     * </p>
+     * @param fodselsnummer String-representation of a fodselsnummer.
+     * @return
+     * @throws IllegalArgumentException if input string does not validate as a fodselsnummer.
+     */
     public static Fodselsnummer valueOf(String fodselsnummer) throws IllegalArgumentException {
         return new Fodselsnummer(fodselsnummer);
     }
-    
+
     public String getBirthYear2Digit() {
         return stringRepresentation.substring(4, 6);
     }
-    
+
     public String getMonth() {
         return stringRepresentation.substring(2, 4);
     }
@@ -34,21 +44,21 @@ public class Fodselsnummer {
     public String getDay() {
         return stringRepresentation.substring(0, 2);
     }
-    
+
     public boolean isMale() {
         return !isFemale();
     }
 
     public boolean isFemale() {
         String s = stringRepresentation.substring(8, 9);
-        int sexDigit = Integer.valueOf(s );
+        int sexDigit = Integer.valueOf(s);
         return sexDigit % 2 == 0;
     }
 
     public static boolean isValid(String ssn) {
         return Validator.isValid(ssn);
     }
-    
+
     @Override
     public String toString() {
         return stringRepresentation;

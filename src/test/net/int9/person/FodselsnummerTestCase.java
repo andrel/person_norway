@@ -2,18 +2,6 @@ package net.int9.person;
 
 public class FodselsnummerTestCase {
 
-    public String getYyyy() {
-        return yyyy;
-    }
-
-    public String getMm() {
-        return mm;
-    }
-
-    public String getDd() {
-        return dd;
-    }
-
     private boolean isMale;
     private String fodselsNummer;
     private String yyyy;
@@ -68,6 +56,18 @@ public class FodselsnummerTestCase {
     }
 
     public String getYy() {
-        return yyyy.substring(2,4);
+        return yyyy.substring(2, 4);
+    }
+
+    public String getYyyy() {
+        return yyyy;
+    }
+
+    public String getMm() {
+        return mm;
+    }
+
+    public String getDd() {
+        return dd;
     }
 }
