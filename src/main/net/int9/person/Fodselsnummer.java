@@ -26,7 +26,7 @@ public final class Fodselsnummer {
      *     valid fodselsnummer.
      * </p>
      * @param fodselsnummer String-representation of a fodselsnummer.
-     * @return
+     * @return a new {@link Fodselsnummer} object, based on the input parameter.
      * @throws IllegalArgumentException if input string does not validate as a fodselsnummer.
      */
     public static Fodselsnummer valueOf(String fodselsnummer) throws IllegalArgumentException {
@@ -49,6 +49,7 @@ public final class Fodselsnummer {
         return !isFemale();
     }
 
+    @SuppressWarnings({"BooleanMethodIsAlwaysInverted", "WeakerAccess"})
     public boolean isFemale() {
         String s = stringRepresentation.substring(8, 9);
         int sexDigit = Integer.valueOf(s);

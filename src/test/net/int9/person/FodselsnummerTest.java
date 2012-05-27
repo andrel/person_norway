@@ -30,8 +30,8 @@ public class FodselsnummerTest {
         cases.add(new FodselsnummerTestCase("01088049620").setFemale().isBornInYear("1980").isBornMonth("08").isBornDay("01"));
         cases.add(new FodselsnummerTestCase("31120894539").setMale().isBornInYear("2008").isBornMonth("12").isBornDay("31"));
         cases.add(new FodselsnummerTestCase("01129462406").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01"));
-        cases.add(new FodselsnummerTestCase("01129462407").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01").setIsInvalid());
-        cases.add(new FodselsnummerTestCase("abc").setIsInvalid());
+        cases.add(new FodselsnummerTestCase("01129462407").setFemale().isBornInYear("1894").isBornMonth("12").isBornDay("01").setInvalid());
+        cases.add(new FodselsnummerTestCase("abc").setInvalid());
         return cases;
     }
 

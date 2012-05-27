@@ -2,24 +2,24 @@ package net.int9.person;
 
 public class FodselsnummerTestCase {
 
-    private boolean isMale;
+    private boolean male;
     private String fodselsNummer;
     private String yyyy;
     private String mm;
     private String dd;
-    private boolean isInvalid;
+    private boolean invalid;
 
     public FodselsnummerTestCase(String fodselsNummer) {
         this.fodselsNummer = fodselsNummer;
     }
 
     public FodselsnummerTestCase setMale() {
-        this.isMale = true;
+        this.male = true;
         return this;
     }
 
     public boolean isMale() {
-        return isMale;
+        return male;
     }
 
     public FodselsnummerTestCase isBornInYear(String yyyy) {
@@ -38,7 +38,7 @@ public class FodselsnummerTestCase {
     }
 
     public FodselsnummerTestCase setFemale() {
-        this.isMale = false;
+        this.male = false;
         return this;
     }
 
@@ -46,13 +46,13 @@ public class FodselsnummerTestCase {
         return fodselsNummer;
     }
 
-    public FodselsnummerTestCase setIsInvalid() {
-        this.isInvalid = true;
+    public FodselsnummerTestCase setInvalid() {
+        this.invalid = true;
         return this;
     }
 
     public boolean isInvalid() {
-        return isInvalid;
+        return invalid;
     }
 
     public String getYy() {

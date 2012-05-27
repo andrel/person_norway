@@ -23,7 +23,7 @@ class Validator {
         }
     }
 
-    static boolean isNumeric(String ssn) {
+    private static boolean isNumeric(String ssn) {
         try {
             Double.parseDouble(ssn);
             return true;
@@ -33,7 +33,7 @@ class Validator {
         }
     }
 
-    static boolean validCheckDigits(String ssn) {
+    private static boolean validCheckDigits(String ssn) {
         Integer cc1 = 11 - (
                 (3 * getDigit(ssn, 0)
                         + 7 * getDigit(ssn, 1)
