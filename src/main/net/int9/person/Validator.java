@@ -24,13 +24,14 @@ class Validator {
     }
 
     private static boolean isNumeric(String ssn) {
-        try {
-            Double.parseDouble(ssn);
-            return true;
-        } catch (NumberFormatException e) {
-            LOG.log(Level.FINE, "Fodselsnummer not numeric.");
-            return false;
+        for (int i = 0; i < ssn.length(); i++) {
+            if (!Character.isDigit(ssn.charAt(i))) {
+                LOG.log(Level.FINE, "Fodselsnummer not numeric.");
+                return false;
+            }
         }
+
+        return true;
     }
 
     private static boolean validCheckDigits(String ssn) {
